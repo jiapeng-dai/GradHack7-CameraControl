@@ -33,6 +33,7 @@ import android.view.Gravity;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -138,21 +139,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 }
             }
         });
-        /*
-        while (cashres.size() == 0 && cashres2.size() == 0) {
-            try {
-                Thread.sleep(100);
-            } catch (Exception e) {
-                Log.e(TAG,"error" + e.toString());
-            }
-        }
-        if (cashres.size() > 0) {
-            cashtv.setText(cashres.get(0));
-        } else if (cashres2.size() > 0) {
-            cashtv.setText(cashres2.get(0));
-        }
-
-         */
     }
 
     public void init() {
@@ -207,6 +193,9 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 public void run() {
                     Toast toast = Toast.makeText(MainActivity.this,tresult,Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+                    ViewGroup group = (ViewGroup) toast.getView();
+                    TextView messageTextView = (TextView) group.getChildAt(0);
+                    messageTextView.setTextSize(50);
                     toast.show();
                 }
             });
